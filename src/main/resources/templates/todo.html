@@ -1,0 +1,44 @@
+!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Inicio</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        
+        <header th:replace="layout/plantilla :: header"></header>
+        
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/agregar}">Prueba</a>
+        
+        <div th:if="${personas != null and !personas.empty}">
+            <table border="1">
+                <tr>
+                    <th>uacveserv</th>
+                    <th>uacorreo</th>
+                    <th>uadirecc</th>
+                    <th>uapassword</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+                </tr>
+                <tr th:each="persona : ${personas}">
+                    <td th:text="${persona.uacveserv}">Mostrar Nombre</td>
+                    <td th:text="${persona.uacorreo}">Mostrar Apellido</td>
+                    <td th:text="${persona.uadirecc}">Mostrar Email</td>
+                    <td th:text="${persona.uapassword}">Mostrar Teléfono</td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/editar/} + ${persona.uacveserv}"/>Editar</td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/eliminar(idPersona=${persona.uacveserv})}"/>Eliminar</td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${personas == null or personas.empty}">
+Vacio
+        </div>
+        
+        <footer th:replace="layout/plantilla :: footer"></footer>
+        
+    </body>
+</html>

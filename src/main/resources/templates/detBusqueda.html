@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detalle Busqueda</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link th:href="@{/styles/cssandjs/img/favicon/favicon.ico}" rel="shortcut icon">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800}"
+          rel="stylesheet">
+    <link th:href="@{/styles/cssandjs/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssandjs/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssandjs/lib/animate-css/animate.min.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssandjs/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<header th:replace="layout/pld :: header"></header>
+
+<div class="container">
+    <h1></h1>
+    <form class="row g-3"  method="post" th:action="@{/Admin/ActualizaLibro.xhtm}">
+        <div class="col-md-2">
+            <label  class="form-label">Identificador</label> <br>
+            <label th:text="${libro.lcvelibro}"></label>
+            <input type="hidden" th:value="${libro.lcvelibro}" id="lcvelibro" name="lcvelibro">
+            <input type="hidden" th:value="${libro.lstock}" id="lstock" name="lstock">
+
+        </div>
+        <div class="col-md-4">
+            <label for="inputEmail4" class="form-label">Titulo</label>
+            <input type="text" class="form-control" id="libro.ltitlibro" th:value="${libro.ltitlibro}" name="ltitlibro">
+        </div>
+        <div class="col-md-3">
+            <label for="inputPassword4" class="form-label">Autor</label>
+            <input type="text" class="form-control" id="lautor" th:value="${libro.lautor}" name="lautor">
+        </div>
+        <div class="col-4">
+            <label for="inputAddress" class="form-label">Editorial</label>
+            <input type="text" class="form-control" id="leditorial" th:value="${libro.leditorial}" name="leditorial">
+        </div>
+        <div class="col-2">
+            <label for="inputAddress2" class="form-label">Clave Inventario</label>
+            <input type="text" class="form-control" id="lcveinventario" th:value="${libro.lcveinventario}" name="lcveinventario">
+        </div>
+        <div class="col-md-4">
+            <label for="inputState2" class="form-label"  >Estatus del libro</label>
+            <select class="form-select" id="catstslibro.ccvestslibr" name="catstslibro.ccvestslibr">
+                <option selected="selected" th:value="${libro.catstslibro.ccvestslibr}" th:text="${libro.catstslibro.cdesstslibr}">Selecciona Opcion</option>
+                <option th:each="option : ${estatuslibro}" th:value="${option.ccvestslibr}" th:text="${option.cdesstslibr}"></option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="inputState" class="form-label" >Genero Literario</label>
+            <select class="form-select" id="genLiterario.GCVEGEN" name="genLiterario.GCVEGEN">
+                <option selected="selected" th:value="${libro.genLiterario.GCVEGEN}" th:text="${libro.genLiterario.GDESGEN}">Selecciona Opcion</option>
+                <option th:each="option : ${generoslit}" th:value="${option.GCVEGEN}" th:text="${option.GDESGEN}"></option>
+            </select>
+        </div>
+
+        <div class="col-md-12">
+            <label>Reseña</label>
+            <div class="form-floating">
+                <textarea class="form-control" th:text="${libro.lresena}" th:value="${libro.lresena}" placeholder="Leave a comment here" id="lresena" name="lresena" style="height: 100px"></textarea>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label>Observaciones</label>
+            <div class="form-floating">
+                <textarea class="form-control" th:text="${libro.lobserv}" th:value="${libro.lobserv}" placeholder="Leave a comment here" id="lobserv" name="lobserv" style="height: 100px"></textarea>
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+    </form>
+</div>
+<footer th:replace="layout/plantilla :: footer"></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/superfish/hoverIntent.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/superfish/superfish.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/morphext/morphext.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/wow/wow.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/stickyjs/sticky.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/easing/easing.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/js/custom.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/contactform/contactform.js}"></script>
+
+<script type="text/javascript" th:src="@{/styles/cssandjs/js/carrito.js}"></script>
+</body>
+</html>

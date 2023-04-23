@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Biblioteca Virtual GEM</title>
+
+    <link th:href="@{/styles/cssandjs/img/favicon/favicon.ico}" rel="shortcut icon">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800}"
+          rel="stylesheet">
+    <link th:href="@{/styles/cssandjs/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssandjs/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssandjs/lib/animate-css/animate.min.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssandjs/style.css}" rel="stylesheet"/>
+
+    <style>
+    ::-webkit-scrollbar{
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track{
+      box-shadow: inset 0 0 5px gray;
+    }
+    ::-webkit-scrollbar-thumb{
+      background-color: rgb(77, 77, 77);
+    }
+    ::-webkit-scrollbar-thumb:hover{
+      background: rgb(58, 58, 58);
+    }
+    </style>
+</head>
+<body>
+<div id="contenedor">
+    <header th:replace="layout/plantilla :: header"></header>
+    <div id="contenido">
+        <section id="hero">
+            <div class="hero-container">
+                <div class="wow fadeIn">
+                   <!-- <div class="hero-logo">
+                        <img class="" th:src="@{/pagina/Logo_GEM.png}" alt="LogoGEM" width="40%">
+                    </div>-->
+                    <h1 th:text="${frase.fdesfrase}">"El que ama la lectura, tiene todo a su alcance"</h1>
+                    <h2 th:text="${frase.fautor}">-William Godwin.<span class=""></span></h2>
+                    <div class="actions">
+
+                        <a href="/Politicas.xhtm" class="btn-get-started">Acervo bibliografico</a>
+<!--                        <a href="/Libros/AcervoBibliografico.xhtm" class="btn-get-started">Acervo bibliografico</a>-->
+                        <a href="/Historial/Prestamos.xhtm" class="btn-services">Historial de prestamos</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container wow fadeInUp">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="section-title">Recomendaciones</h3>
+                        <div class="section-title-divider"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div th:each="recomendaciones : ${recomendaciones}"  class="col-md-4 service-item">
+                        <div class="service-icon"><i class="fa fa-book"></i></div>
+                        <h4 class="service-title" th:text="${recomendaciones.ltitlibro}">La Piel del Tambor </h4>
+                        <p class="service-description" th:text="${recomendaciones.lresena}">Voluptatum deleniti atque corruptUn pirata informático que se
+                            infiltra en el vaticano, una iglesia barroca, en sevilla, que mata para defenderse. Tres
+                            pintorescos malvados que aspiran a mantener viva la copla española. Una bella aristócrata
+                            andaluza. Un apuesto sacerdote-agente especialista en asuntos sucios. Un banquero celoso y
+                            su secretario ludópata. Una reptuagenaria que bebe coca-cola. La tarjeta postal de una mujer
+                            muerta un siglo atrás. Y el misterioso legado del capitán xaloc, último corsario español,
+                            desaparecido frente a las costas de cuba en 1898.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="subscribe">
+            <div class="container wow fadeInUp">
+                <div th:if="${#lists.isEmpty(eventos)}">
+                    <h3 class="subscribe-title text-center">Espera Proximos Eventos de Lectura </h3>
+                </div>
+                <div th:each="eventos : ${evento}" class="row">
+
+                    <div  class="col-md-8">
+                        <h3 class="subscribe-title text-center"></h3>
+                        <h4 class="subscribe-title" th:text="${eventos.etitevent}" ></h4>
+                        <p class="subscribe-text"th:text="${eventos.edesevent}"></p>
+                    </div>
+                    <div class="col-md-4 subscribe-btn-container">
+                        <a class="subscribe-btn" th:href="${eventos.eurlevent}" target="_blank">Mas información</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="team">
+            <div class="container wow fadeInUp">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="section-title">Mas Leídos</h3>
+                        <div class="section-title-divider"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div th:each="masleidos : ${masleidos}" class="col-md-3">
+                        <div class="member">
+                            <p th:text="${masleidos.lresena}"></p>
+                            <h4 th:text="${masleidos.ltitlibro}"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container wow fadeInUp">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="section-title">Contactanos</h3>
+                        <div class="section-title-divider"></div>
+                        <p class="section-description">Secretaria de Finanzas - Subdirección de Integracion Familiar</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-md-push-2">
+                        <div class="info">
+                            <div>
+                                <i class="fa fa-map-marker"></i>
+                                <p>Av. Miguel Hidalgo Ote. 216, Centro<br>50000 Toluca de Lerdo, Méx.</p>
+                            </div>
+
+                            <div>
+                                <i class="fa fa-envelope"></i>
+                                <p>IntegracionFamiliar416@gmail.com</p>
+                            </div>
+
+                            <div>
+                                <i class="fa fa-phone"></i>
+                                <p>7222138877 <br>Ext. 423</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-md-push-2">
+                        <div class="form">
+                            <div id="sendmessage">Your message has been sent. Thank you!</div>
+                            <div id="errormessage"></div>
+                            <form action="" method="post" role="form" class="contactForm" id="miForm">
+                                <div class="form-group">
+                                    <input type="text" name="asunto" class="form-control" id="asunto"
+                                           placeholder="Asunto"
+                                           data-rule="minlen:4" data-msg="Por favor ingrese al menos 4 caracteres"/>
+                                    <div class="validation"></div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" id="email"
+                                           placeholder="Correo electrónico"
+                                           data-rule="email" data-msg="correo electronico"/>
+                                    <div class="validation"></div>
+                                </div>
+                                <div class="form-group">
+                <textarea class="form-control" name="cpu" id="cpu" rows="5" data-rule="required"
+                          data-msg="Por favor escribe algo para nosotros" placeholder="Mensaje"></textarea>
+                                    <div class="validation"></div>
+                                </div>
+                                <div class="text-center">
+                                    <h3 class="btn btn-info waves-effect" id="demo" onclick="myFunction()">Enviar Mensaje</h3>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer th:replace="layout/plantilla :: footer"></footer>
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+</div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/superfish/hoverIntent.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/superfish/superfish.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/morphext/morphext.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/wow/wow.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/stickyjs/sticky.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/easing/easing.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/js/custom.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/contactform/contactform.js}"></script>
+</body>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+    function myFunction() {
+        var cadena = document.getElementById('cpu').value;
+        var asunto = document.getElementById('asunto').value;
+        var email = document.getElementById('email').value;
+
+        if (cadena.length != 0 && asunto.length != 0 && email.length != 0) {
+            $.ajax({
+                type: "GET",
+                  beforeSend: function(  ) {
+                   let timerInterval
+                   Swal.fire({
+                     title: 'Mandando correo',
+                     html: ' ',
+                     timer: 1000,
+                     timerProgressBar: true,
+                     didOpen: () => {
+                       Swal.showLoading()
+                       const b = Swal.getHtmlContainer().querySelector('b')
+                       timerInterval = setInterval(() => {
+                         b.textContent = Swal.getTimerLeft()
+                       }, 1)
+                     },
+                     willClose: () => {
+                       clearInterval(timerInterval)
+                     }
+                   }).then((result) => {
+                     /* Read more about handling dismissals below */
+                     if (result.dismiss === Swal.DismissReason.timer) {
+                       console.log('Cargando')
+                     }
+                   })
+        },
+                url: "/Ajax/Mensaje",
+                data: {
+                    email: email,
+                    curp: cadena,
+                    asunto: asunto
+                },
+                success: function (result) {
+                    if (result === "NEL") {
+                        swal("Error", "Ha ocurrido un error al enviar tu mensaje, por favor intentalo mas tarde", "error");
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Mensaje enviado!',
+                            text: ' '
+                        }).then((result)=>{
+                            window.localStorage.clear();
+                            window.location.replace("/Inicio/BibliotecaGEM.xhtm");
+                            })
+                            limpiarFormulario() ;
+                    }
+                }});
+        } else {
+            swal("Error", "Asegurate de llenar los campos", "error");
+
+        }
+    }
+
+      function limpiarFormulario() {
+    document.getElementById("miForm").reset();
+  }
+</script>
+<style th:inline="text">
+
+#hero {
+	display: table;
+	width: 100%;
+	height: 100vh;
+	background: url(/pagina/inicio.jpg) top center fixed;
+	background-size: cover;
+}
+
+        <script>
+            function init()
+            {
+               window.location.href = "www.wherever.com";
+            }
+        </script>
+
+</style>
+</html>
+

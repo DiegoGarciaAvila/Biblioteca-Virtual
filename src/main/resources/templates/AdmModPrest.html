@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Modificar Servidor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+
+    <link th:href="@{/styles/cssandjs/img/favicon/favicon.ico}" rel="shortcut icon">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800}"
+          rel="stylesheet">
+    <link th:href="@{/styles/cssandjs/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssandjs/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssandjs/lib/animate-css/animate.min.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssandjs/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div id="contenedor">
+    <header th:replace="layout/pld :: header"></header>
+    <br>
+
+    <div id="contenido">
+        <div class="container">
+            <h2 class="text-primary text-center">Modificar</h2>
+            <form th:action="@{/Admin/Usuario.xhtm/detalles/guardar}" method="post">
+
+
+
+
+                <div class="text-right">
+                <select class="form-control" id="estsevent" name="estsevent">
+
+                    <option th:each="option : ${estatusprest}" th:value="${option.cstspre}" th:text="${option.cdespre}"></option>
+                </select>
+                </div>
+                </p>
+                <div class="table-responsive text-center">
+                    <table class="table borderless">
+                        <tr>
+                            <td><p><label>Nombre</label></p>
+                                <input type="text" class="form-control" name="eurlevent" th:value="${prestamo.pdevuelve}">
+                            </td>
+                            <td><p><label>Apellido paterno</label></p>
+
+                            </td>
+                            <td colspan="2"><p><label>Apellido materno</label></p>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><p><label>Genero</label></p>
+
+
+                            </td>
+                            <td><p><label>Edad</label></p>
+                                <input type="number" name="uaedad" th:value="${detalle.pentrega}">
+                            </td>
+                            <td colspan="2"><p><label>Identificación oficial</label></p>
+                                <input type="file" name="uaident" th:value="${detalle.precibe}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-center text-danger"><strong>Domicilio y contacto
+                                personal</strong></td>
+                        </tr>
+                    </table>
+                    <button type="submit" class="btn btn-success">Guardar modificación</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer th:replace="layout/plantilla :: footer"></footer>
+</div>
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/superfish/hoverIntent.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/superfish/superfish.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/morphext/morphext.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/wow/wow.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/stickyjs/sticky.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/easing/easing.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/js/custom.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/contactform/contactform.js}"></script>
+</body>
+</html>

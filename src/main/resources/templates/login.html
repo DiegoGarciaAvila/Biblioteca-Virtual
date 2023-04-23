@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:width="http://www.w3.org/1999/xhtml"
+>
+    <head>
+        <title>Iniciar Sesión</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <meta charset="UTF-8"/>
+        <link th:href="@{/styles/cssandjs/img/favicon/favicon.ico}" rel="shortcut icon">
+        <link th:href="@{/styles/cssandjs/login-style.css}" type="text/css" rel="stylesheet" />
+
+    </head>
+    <body>
+        <a><img th:src="@{/styles/cssandjs/img/Logo_GEM.png}" id="logo"></a>
+        <section id="login">
+            <h3>Inicio de sesión</h3>
+            <form id="form-login" method="POST" th:action="@{/login}">
+                <img class="iconos" th:src="@{/styles/cssandjs/img/user.png}">
+                <input type="text" name="username" id="textBox1" placeholder="Clave de SP"/>
+                <br/><br>
+                <img class="iconos" th:src="@{/styles/cssandjs/img/lock-pass.png}" >
+                <input type="password" name="password" placeholder="Contraseña" id="textBox2"/>
+                <br/> <br>
+                <a href="https://www.edomex.gob.mx/sis/sa/ingreso/recupera.htm" id="forgot-Pass">Olvidé la Contraseña</a>
+                <input type="submit" class="boton" value="Iniciar sesión" id="btnlogin"/>
+            </form>
+        </section>
+        <div sec:authorize="isAuthenticated()" >
+            <a th:href="@{/logout}" type="button" class="btn btn-danger text-light" id="asd"></a>
+        </div>
+    </body>
+
+</html>
+<script>
+asd.click()
+
+</script>

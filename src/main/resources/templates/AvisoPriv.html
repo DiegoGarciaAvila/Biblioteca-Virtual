@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:width="http://www.w3.org/1999/xhtml"
+      xmlns:height="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Bienvenido</title>
+    <style>
+        body{
+            background: url("/styles/cssandjs/img/bgevento.png");
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
+
+        @media screen and (max-width:767px){
+        #documento #documentovista{
+
+             width:100%;
+
+        }
+          @media screen and (max-width:500px){
+        #documento #documentovista{
+
+             width:100%;
+
+        }
+    </style>
+</head>
+<body class="justify-content-center align-items-center" >
+<div class="container">
+    <div class="mt-3 text-center" id="documento">
+        <iframe src="https://docs.google.com/viewer?srcid=1UDo1WC2XwWUQrVlojBXysm4zmprMtLIs&pid=explorer&efh=false&a=v&chrome=false&embedded=true"
+                frameborder="1" width="50%" height="530px" class="text-center" id="documentovista"></iframe>
+    </div>
+
+    <div class="text-center">
+        <form id="form1" name="form1" th:action="${path}">
+            <div class="custom-control custom-checkbox">
+                <input autofocus  type="checkbox" class="form-check-input" id="chbx" onchange="verificar();" value="" autocomplete="off">
+                <label style="color:black;" class="custom-control-label largerCheckbox" for="chbx" > <strong>HE LEÍDO Y ACEPTO EL AVISO DE PRIVACIDAD</strong></label><br>
+            </div>
+            <a class="link-primary">
+                <button style="color:white;"  autofocus class="mt-2 btn btn-info waves-effect waves-light" id="btn"  >Aceptar</button>
+            </a><br>
+        </form>
+        <div sec:authorize="isAuthenticated()" >
+            <a th:href="@{/logout}" type="button" class="btn btn-danger text-light" id="asd">Cerrar sesion</a>
+        </div>
+
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script >
+
+window.history.pushState({page: 1}, "", "");
+
+window.onpopstate = function(event) {
+
+  // "event" object seems to contain value only when the back button is clicked
+  // and if the pop state event fires due to clicks on a button
+  // or a link it comes up as "undefined"
+
+  if(event){
+
+    Swal.fire({
+        title: '¿Quieres cerrar sesion?',
+
+        showCancelButton: true,
+        confirmButtonText: 'Salir',
+
+    }).then((result) => {
+    if (result.isConfirmed) {
+
+    asd.click()
+
+
+    } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+    }
+    })
+    }
+  else{
+    }
+}
+
+</script>
+<script>
+
+    const checkInput = document.querySelector('#chbx');
+
+        setTimeout(() => {
+        checkInput.removeAttribute('checked');
+        }, 1);
+        xba = document.getElementById('chbx').checked;
+
+
+
+            if (xba == false) {
+             setTimeout(() => {
+             checkInput.removeAttribute('checked');
+              }, 1);
+                xba = document.getElementById('chbx').checked;
+
+
+                document.form1.btn.disabled = true;
+            }
+
+        function verificar() {
+            xba = document.getElementById('chbx').checked;
+            //alert(xba);
+            if (xba == true) {
+                document.form1.btn.disabled = false;
+            }else{
+                 document.form1.btn.disabled = true;
+            }
+        }
+</script>

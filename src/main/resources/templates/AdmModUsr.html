@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Modificar Servidor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+
+    <link th:href="@{/styles/cssandjs/img/favicon/favicon.ico}" rel="shortcut icon">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800}"
+          rel="stylesheet">
+    <link th:href="@{/styles/cssandjs/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssandjs/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssandjs/lib/animate-css/animate.min.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/cssandjs/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div id="contenedor">
+    <header th:replace="layout/pld :: header"></header>
+    <br>
+    <div id="contenido">
+        <div class="container">
+            <h2 class="text-primary text-center">Modificar</h2>
+            <form th:action="@{/Admin/Usuario.xhtm/detalles/guardar}" method="post">
+                Clave:<input type="hidden" name="uacveserv" th:value="${detalle.uacveserv}"><label
+                    class="text-danger"
+                    th:text="${detalle.uacveserv}"></label>
+                <input type="hidden" name="uapassword" th:value="${detalle.uapassword}">
+                <div class="text-right">
+                    <select aria-label=".form-select-sm example" name="uastsusr">
+                        <option selected th:value="${detalle.uastsusr.ccvestsusr}"
+                                th:text="${detalle.uastsusr.cdesstsusr}"> Elegir
+                        </option>
+                        <option th:each="cst:${csts}" th:text="${cst.cdesstsusr}"
+                                th:value="${cst.ccvestsusr}">dos
+                        </option>
+                    </select>
+                </div>
+                <div class="table-responsive text-center">
+                    <table class="table borderless">
+                        <tr>
+                            <td><p><label>Nombre</label></p>
+                                <input type="text" name="uanombre" th:value="${detalle.uanombre}">
+                            </td>
+                            <td><p><label>Apellido paterno</label></p>
+                                <input type="text" name="uaappaterno" th:value="${detalle.uaappaterno}">
+                            </td>
+                            <td colspan="2"><p><label>Apellido materno</label></p>
+                                <input type="text" name="uaamaterno" th:value="${detalle.uaamaterno}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><p><label>Genero</label></p>
+                                <select name="uagenero" aria-label=".form-select-sm example">
+                                    <option selected th:value="${detalle.uagenero.cvegenero}"
+                                            th:text="${detalle.uagenero.cdesgenero}">Elegir
+                                    </option>
+                                    <option th:each="gen:${genero}" th:value="${gen.cvegenero}"
+                                            th:text="${gen.cdesgenero}"></option>
+                                </select>
+                            </td>
+                            <td><p><label>Edad</label></p>
+                                <input type="number" name="uaedad" th:value="${detalle.uaedad}">
+                            </td>
+                            <td colspan="2"><p><label>Identificación oficial</label></p>
+                                <input type="file" name="uaident" th:value="${detalle.uaident}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-center text-danger"><strong>Domicilio y contacto
+                                personal</strong></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><p><label>Correo Electrónico</label></p>
+                                <input type="text" name="uacorreo" th:value="${detalle.uacorreo}">
+                            </td>
+                            <td colspan="2"><p><label>Teléfono</label></p>
+                                <input type="text" name="uatelmov" th:value="${detalle.uatelmov}">
+                            </td>
+                        </tr>
+
+                        <tr>
+
+                            <td colspan="2"><p><label>Domicilio</label></p>
+                                <textarea rows="2" cols="30" name="uadompart" th:text="${detalle.uadompart}"></textarea>
+                                <!--<input type="text" name="uadompart"
+                                       th:value="${detalle.uadompart}">-->
+                            </td>
+
+                            <td colspan="2"><p><label>Comprobante de domicilio no mayor a 3 meses</label></p>
+                                <input type="file" name="uacomdom" th:value="${detalle.uacomdom}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-danger text-center"><strong>Domicilio y contacto
+                                trabajo</strong></td>
+                        </tr>
+                        <tr>
+                            <td><p><label>Administración</label></p>
+                                <select style="width:200px" id="selectsize" aria-label=".form-select-sm example" name="uaads">
+                                    <option selected th:text="${detalle.uaads.cdesads}"
+                                            th:value="${detalle.uaads.ccveads}">Elegir
+                                    </option>
+                                    <option th:each="cad:${cadu}" th:text="${cad.cdesads}"
+                                            th:value="${cad.ccveads}">dis
+                                    </option>
+                                </select>
+                            </td>
+                            <td colspan="2"><p><label>Domicilio</label></p>
+                                <textarea rows="3" cols="30" name="uadomtrab" th:text="${detalle.uadomtrab}"></textarea>
+                                <!--<input type="text" name="uadomtrab" th:value="${detalle.uadomtrab}">-->
+                            </td>
+                            <td><p><label>Teléfono</label></p>
+                                <input type="text" name="uateltrab" th:value="${detalle.uateltrab}">
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="submit" class="btn btn-success">Guardar modificación</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer th:replace="layout/plantilla :: footer"></footer>
+</div>
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/superfish/hoverIntent.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/superfish/superfish.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/morphext/morphext.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/wow/wow.min.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/stickyjs/sticky.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/lib/easing/easing.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/js/custom.js}"></script>
+<script type="text/javascript" th:src="@{/styles/cssandjs/contactform/contactform.js}"></script>
+</body>
+</html>

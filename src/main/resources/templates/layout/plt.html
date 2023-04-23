@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Plantilla</title>
+    <meta charset="UTF-8"/>
+
+</head>
+<body>
+<header id="header" th:fragment="header">
+    <div class="container">
+        <div id="logo" class="pull-left">
+            <a href="/Inicio/BibliotecaGEM.xhtm"><img th:src="@{/pagina/Logo_GEM.png}" alt="LOGO EDOMEX" title="" /></img></a>
+        </div>
+        <nav id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="menu-has-children" id="carrito"><a><img id="imageCarrito" th:src="@{/styles/cssandjs/img/carrito.png}" alt="Carrito" width="35px"></a>
+                    <ul>
+                        <li id="liCarrito">
+
+                            <table id="tablaCarrito" class="table">
+                                <thead>
+                                <tr>
+                                    <th>Nombre del libro</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                            <a class="btn btn-info" href="" onclick="carritohtmlB()" id="prest">Solicitar prestamo</a>
+                            <button class="btn btn-warning p-3" id="vaciarCarrito" onclick="vaciarCarritoAlertaB()">Quitar libros</button>
+                        </li>
+                    </ul>
+                </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"  class="menu-has-children"><a href="">Administrador</a>
+                    <ul>
+                        <li><a href="/Admin/Prestamos.xhtm">Prestamos</a></li>
+                        <li><a href="/Admin/Acervo.xhtm">Acervo Bibliografico</a></li>
+                        <li><a href="/Admin/Estadisticas.xhtm">Estadisticas</a></li>
+                        <li><a href="/Admin/Usuarios.xhtm">Usuarios</a></li>
+                        <li class="menu-has-children"><a href="#">Catalogos</a>
+                            <ul>
+                                <li><a href="/Admin/Catalogo/GenerosLit.xhtm">Genero Literario</a></li>
+                                <li><a href="/Admin/Catalogo/Frases.xhtm">Frases</a></li>
+                                <li><a href="/Admin/Catalogo/EstatusPrestamo.xhtm">Estatus del Prestamo</a></li>
+                                <li><a href="/Admin/Catalogo/UnidAds.xhtm">Unidades Administrativas</a></li>
+                                <li><a href="/Admin/Catalogo/Genero.xhtm">Genero</a></li>
+                                <li class="menu-has-children"><a>Otros</a>
+                                    <ul>
+                                        <li><a href="/Imagen/Cambiar.xhtm">Cambiar logo</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <!--<li><a href="/logout"><img src="/img/anadir-al-carrito.png" alt="Carrito" width="5%"></a></li>-->
+                <li class="menu-has-children"><a href="">Explorar</a>
+                    <ul>
+                        <li><a href="/Politicas.xhtm">Acervo Bibliografico</a></li>
+                        <li><a href="/Historial/Prestamos.xhtm">Historial de prestamos</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div sec:authorize="isAuthenticated()">
+                        <a th:href="@{/logout}">Cerrar sesion</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+</body>
+</html>
